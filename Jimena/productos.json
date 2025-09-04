@@ -1,0 +1,10 @@
+[
+  { "nombre": "Blazer de doble botonadura", "precio": 32990, "stock": 100, "img": "img/mujer/1.jpg" },
+  { "nombre": "Vestido Tunica con Cinturon de Anudar", "precio": 19990, "stock": 50, "img": "img/mujer/2.jpg" },
+  { "nombre": "Vestido Amarillo", "precio": 19990, "stock": 30, "img": "img/mujer/3.jpg" },
+  { "nombre": "Vestido en crepe con ribetes de volante", "precio": 20000, "stock": 100, "img": "img/mujer/4.jpg" },
+  { "nombre": "Camisa resort de punto regular fit", "precio": 23000, "stock": 20, "img": "img/hombre/1.jpg" },
+  { "nombre": "Camisa texturizada regular fit", "precio": 18500, "stock": 30, "img": "img/hombre/2.jpg" },
+  { "nombre": "Camisa Cargo Azul", "precio": 24000, "stock": 100, "img": "img/hombre/3.jpg" },
+  { "nombre": "Camisa Cargo Verde", "precio": 24000, "stock": 50, "img": "img/hombre/4.jpg" }
+]

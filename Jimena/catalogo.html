@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo</title>
+  <style>
+    .card {
+      border-radius: 12px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+    .card img {
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      object-fit: cover;
+      height: 250px;
+    }
+    footer {
+      background-color: #f8f9fa;
+      border-top: 1px solid #dee2e6;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="Home.html">Tienda Jimena</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+              data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="Home.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active fw-semibold" href="catalogo.html">Catálogo</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" 
+               data-bs-toggle="dropdown" aria-expanded="false">
+              Ajustes
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Pedidos</a></li>
+              <li><a class="dropdown-item" href="#">Cuenta</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="#">Cerrar Sesión</a></li>
+            </ul>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Buscar productos..." aria-label="Search"/>
+          <button class="btn btn-outline-success" type="submit">Buscar</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container my-5">
+    <div class="text-center mb-5">
+      <h1 class="fw-bold">Catálogo de Productos</h1>
+      <p class="text-muted">Explora nuestra selección disponible</p>
+    </div>
+
+    <!-- Contenedor donde se renderizan las cards -->
+    <div id="productos-container" class="row g-4">
+      <!-- Las cards se insertan aquí dinámicamente -->
+    </div>
+  </main>
+
+  <footer class="text-center py-4">
+    <p class="mb-0">&copy; 2025 Tienda Jimena - Todos los derechos reservados</p>
+  </footer>
+
+  <script>
+    const container = document.getElementById("productos-container");
+
+    // Renderizar productos
+    function renderProductos(lista) {
+      container.innerHTML = "";
+      lista.forEach(prod => {
+        const card = document.createElement("div");
+        card.classList.add("col-md-6", "col-lg-4");
+        card.innerHTML = `
+          <div class="card h-100 shadow-sm">
+            <img src="${prod.img}" class="card-img-top" alt="${prod.nombre}">
+            <div class="card-body">
+              <h5 class="card-title fw-semibold">${prod.nombre}</h5>
+              <p class="card-text text-muted">Stock disponible: ${prod.stock}</p>
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+              <span class="fw-bold text-success">$${prod.precio}</span>
+              <button class="btn btn-sm btn-primary">Agregar</button>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Cargar JSON
+    fetch("productos.json")
+      .then(res => res.json())
+      .then(data => renderProductos(data))
+      .catch(err => console.error("Error al cargar productos:", err));
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
